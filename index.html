@@ -1,241 +1,839 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Our Love ❤️</title>
+<title>Our Little Forever ❤️</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: white;
-      font-family: "Poppins", sans-serif;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255, 70, 130, 0.22), transparent 30%),
-        radial-gradient(circle at 85% 80%, rgba(190, 40, 120, 0.20), transparent 35%),
-        linear-gradient(135deg, #080308, #250b1b, #10050e);
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
 
-    .glow {
-      position: fixed;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: rgba(255, 60, 130, 0.10);
-      filter: blur(75px);
-      pointer-events: none;
-    }
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 40, 110, .18), transparent 28%),
+    radial-gradient(circle at 85% 85%, rgba(220, 20, 90, .18), transparent 30%),
+    linear-gradient(145deg, #080308, #210914, #0b0308);
+}
 
-    .one {
-      top: -100px;
-      left: -90px;
-    }
+/* Soft background glow */
 
-    .two {
-      bottom: -110px;
-      right: -90px;
-    }
+.glow {
+  position: fixed;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .45;
+  pointer-events: none;
+}
 
-    .card {
-      width: min(92%, 500px);
-      padding: 38px 24px;
-      text-align: center;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.13);
-      background: rgba(255,255,255,0.065);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 25px 80px rgba(0,0,0,0.5);
-    }
+.glow.one {
+  background: #ff176f;
+  top: -120px;
+  left: -100px;
+}
 
-    .heart {
-      font-size: 62px;
-      animation: beat 1.5s infinite;
-      filter: drop-shadow(0 0 20px rgba(255,70,130,0.7));
-    }
+.glow.two {
+  background: #b8004f;
+  bottom: -120px;
+  right: -100px;
+}
 
-    @keyframes beat {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-    }
+/* Floating background hearts */
 
-    h1 {
-      margin: 12px 0 5px;
-      font-family: "DM Serif Display", serif;
-      font-size: 38px;
-      font-weight: 400;
-    }
+.bg-heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  opacity: 0;
+  animation: floatUp linear forwards;
+  filter: drop-shadow(0 0 8px currentColor);
+}
 
-    .since {
-      font-size: 13px;
-      opacity: 0.65;
-      margin-bottom: 28px;
-    }
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(.7) rotate(0deg);
+    opacity: 0;
+  }
 
-    .label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      margin-top: 14px;
-    }
+  15% {
+    opacity: .45;
+  }
 
-    .big {
-      font-size: 25px;
-      font-weight: 500;
-      margin-top: 6px;
-    }
+  80% {
+    opacity: .25;
+  }
 
-    #time {
-      font-size: 18px;
-      line-height: 1.8;
-      margin-top: 5px;
-    }
+  100% {
+    transform: translateY(-110vh) translateX(40px) scale(1.15) rotate(25deg);
+    opacity: 0;
+  }
+}
 
-    .seconds {
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      font-size: 12px;
-      opacity: 0.7;
-    }
+/* Main card */
 
-    #totalSeconds {
-      font-size: 17px;
-      font-weight: 500;
-      margin-top: 5px;
-    }
+.card {
+  width: min(92%, 480px);
+  margin: 30px auto;
+  padding: 35px 22px 28px;
+  text-align: center;
 
-    .note {
-      margin-top: 24px;
-      font-family: "DM Serif Display", serif;
-      font-size: 17px;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 30px;
 
-    .footer {
-      margin-top: 18px;
-      font-size: 11px;
-      opacity: 0.4;
-    }
-  </style>
+  background: rgba(255,255,255,.055);
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.55),
+    inset 0 0 30px rgba(255,80,130,.025);
+}
+
+/* Main clickable heart */
+
+.main-heart {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 65px;
+  padding: 0;
+  line-height: 1;
+
+  filter: drop-shadow(0 0 18px rgba(255,60,120,.7));
+
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.13);
+  }
+}
+
+h1 {
+  margin: 15px 0 5px;
+  font-family: "DM Serif Display", serif;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 12px;
+  opacity: .55;
+  margin-bottom: 25px;
+}
+
+/* Countdown box */
+
+.countdown-box {
+  position: relative;
+  padding: 25px 15px;
+  border-radius: 23px;
+
+  border: 1px solid rgba(255,80,140,.55);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,40,110,.08),
+      rgba(255,255,255,.035)
+    );
+
+  box-shadow:
+    0 0 22px rgba(255,40,110,.16),
+    inset 0 0 25px rgba(255,40,110,.035);
+}
+
+/* Total duration */
+
+.duration {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: .5px;
+}
+
+.time {
+  margin-top: 13px;
+  font-size: 17px;
+  letter-spacing: .5px;
+  opacity: .9;
+}
+
+.total {
+  margin-top: 19px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,.09);
+
+  font-size: 12px;
+  opacity: .6;
+}
+
+.total span {
+  display: block;
+  margin-top: 4px;
+  font-size: 17px;
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* Hearts coming from seconds */
+
+.timer-heart {
+  position: fixed;
+  z-index: 20;
+  pointer-events: none;
+
+  font-size: 13px;
+  opacity: 0;
+
+  animation: timerHeart 1.5s ease-out forwards;
+}
+
+@keyframes timerHeart {
+  0% {
+    transform: translate(0, 0) scale(.4);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate(var(--x), -115px)
+      scale(1.05)
+      rotate(var(--r));
+    opacity: 0;
+  }
+}
+
+/* Click message */
+
+.click-message {
+  min-height: 30px;
+  margin: 18px 5px 0;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 17px;
+  opacity: 0;
+
+  transition: opacity .4s ease;
+}
+
+.click-message.show {
+  opacity: .95;
+}
+
+/* Secret */
+
+.secret {
+  margin-top: 25px;
+}
+
+.secret-button {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50px;
+
+  padding: 10px 18px;
+
+  color: white;
+  background: rgba(255,255,255,.055);
+
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.secret-button:hover {
+  background: rgba(255,60,120,.12);
+}
+
+.secret-box {
+  display: none;
+  margin-top: 15px;
+}
+
+.secret-box.show {
+  display: block;
+}
+
+.secret-input {
+  width: 100%;
+  padding: 11px 14px;
+
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+
+  outline: none;
+
+  color: white;
+  background: rgba(0,0,0,.22);
+
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.unlock {
+  margin-top: 9px;
+
+  padding: 9px 18px;
+
+  border: none;
+  border-radius: 30px;
+
+  color: white;
+  background: linear-gradient(135deg, #ff3c86, #b80d50);
+
+  cursor: pointer;
+}
+
+.secret-message {
+  display: none;
+  margin-top: 17px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.secret-message.show {
+  display: block;
+}
+
+.error {
+  color: #ff9cbd;
+  font-size: 11px;
+  margin-top: 7px;
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 23px;
+  font-size: 10px;
+  opacity: .35;
+}
+
+@media (max-width: 400px) {
+
+  .card {
+    padding: 30px 16px 24px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .duration {
+    font-size: 23px;
+  }
+
+  .time {
+    font-size: 15px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="glow one"></div>
-  <div class="glow two"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
 
-  <div class="card">
+<div class="card">
 
-    <div class="heart">❤️</div>
+  <!-- Main heart -->
+  <button class="main-heart" onclick="heartClick()">❤️</button>
 
-    <h1>Our Time Together</h1>
+  <h1>Our Time Together</h1>
 
-    <div class="since">
-      Since 30 May 2026 • 12:40 PM
+  <div class="subtitle">
+    Since 30 May 2026 • 12:40 PM
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-box">
+
+    <div class="duration" id="duration">
+      0 Months • 0 Days
     </div>
 
-    <div class="label">Months Together</div>
-    <div class="big" id="months">Loading...</div>
-
-    <div class="label">Days Together</div>
-    <div class="big" id="days">Loading...</div>
-
-    <div class="label">Time Together</div>
-    <div id="time">Loading...</div>
-
-    <div class="seconds">
-      💗 Total seconds together
-      <div id="totalSeconds">Loading...</div>
+    <div class="time" id="time">
+      00 Hours • 00 Minutes • 00 Seconds
     </div>
 
-    <div class="note">
-      "No matter how many seconds pass,<br>
-      every one of them becomes a little memory of us. ❤️"
-    </div>
-
-    <div class="footer">
-      Every second with you matters.
+    <div class="total">
+      TOTAL SECONDS TOGETHER
+      <span id="totalSeconds">0</span>
     </div>
 
   </div>
 
-  <script>
-    const start = new Date("2026-05-30T12:40:00+05:30");
+  <!-- Random message -->
+  <div class="click-message" id="clickMessage"></div>
 
-    function updateTimer() {
+  <!-- Secret -->
+  <div class="secret">
 
-      const now = new Date();
-      const difference = now - start;
+    <button class="secret-button" onclick="showSecret()">
+      💌 Our Little Secret
+    </button>
 
-      if (difference < 0) {
-        document.getElementById("months").innerHTML = "Not started yet ❤️";
-        document.getElementById("days").innerHTML = "0 Days";
-        document.getElementById("time").innerHTML = "00 Hours • 00 Minutes • 00 Seconds";
-        document.getElementById("totalSeconds").innerHTML = "0";
-        return;
-      }
+    <div class="secret-box" id="secretBox">
 
-      const totalSeconds = Math.floor(difference / 1000);
+      <input
+        id="password"
+        class="secret-input"
+        type="password"
+        placeholder="Enter the secret password ❤️"
+      >
 
-      const totalDays = Math.floor(difference / 86400000);
+      <button class="unlock" onclick="unlockSecret()">
+        Unlock 💌
+      </button>
 
-      let cursor = new Date(start);
-      let months = 0;
+      <div class="error" id="error"></div>
 
-      while (true) {
-        let next = new Date(cursor);
-        next.setMonth(next.getMonth() + 1);
+      <div class="secret-message" id="secretMessage">
+        Welcome to our little hidden corner. ❤️
+        <br>
+        A little piece of my heart.
+      </div>
 
-        if (next <= now) {
-          months++;
-          cursor = next;
-        } else {
-          break;
-        }
-      }
+    </div>
 
-      let remaining = now - cursor;
+  </div>
 
-      const hours = Math.floor(remaining / 3600000);
-      remaining %= 3600000;
+  <div class="footer">
+    Every second with you matters. ❤️
+  </div>
 
-      const minutes = Math.floor(remaining / 60000);
-      const seconds = Math.floor((remaining % 60000) / 1000);
+</div>
 
-      document.getElementById("months").innerHTML =
-        months + (months === 1 ? " Month" : " Months");
+<script>
 
-      document.getElementById("days").innerHTML =
-        totalDays + (totalDays === 1 ? " Day" : " Days");
+/* =========================
+   RELATIONSHIP START
+========================= */
 
-      document.getElementById("time").innerHTML =
-        String(hours).padStart(2, "0") + " Hours • " +
-        String(minutes).padStart(2, "0") + " Minutes • " +
-        String(seconds).padStart(2, "0") + " Seconds";
+const start = new Date("2026-05-30T12:40:00+05:30");
 
-      document.getElementById("totalSeconds").innerHTML =
-        totalSeconds.toLocaleString();
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+function updateTimer() {
+
+  const now = new Date();
+
+  const difference = now - start;
+
+  if (difference < 0) {
+    return;
+  }
+
+  /* Total seconds */
+
+  const totalSeconds = Math.floor(difference / 1000);
+
+  /* Total days */
+
+  const totalDays = Math.floor(
+    difference / 86400000
+  );
+
+  /* Calendar months */
+
+  let cursor = new Date(start);
+
+  let months = 0;
+
+  while (true) {
+
+    const next = new Date(cursor);
+
+    next.setMonth(
+      next.getMonth() + 1
+    );
+
+    if (next <= now) {
+
+      months++;
+
+      cursor = next;
+
+    } else {
+
+      break;
+    }
+  }
+
+  /* Remaining time after completed months */
+
+  let remaining = now - cursor;
+
+  const days = Math.floor(
+    remaining / 86400000
+  );
+
+  remaining %= 86400000;
+
+  const hours = Math.floor(
+    remaining / 3600000
+  );
+
+  remaining %= 3600000;
+
+  const minutes = Math.floor(
+    remaining / 60000
+  );
+
+  const seconds = Math.floor(
+    (remaining % 60000) / 1000
+  );
+
+  document.getElementById("duration").innerHTML =
+    months +
+    (months === 1 ? " Month" : " Months") +
+    " • " +
+    days +
+    (days === 1 ? " Day" : " Days");
+
+  document.getElementById("time").innerHTML =
+    String(hours).padStart(2, "0") +
+    " Hours • " +
+
+    String(minutes).padStart(2, "0") +
+    " Minutes • " +
+
+    String(seconds).padStart(2, "0") +
+    " Seconds";
+
+  document.getElementById("totalSeconds").innerHTML =
+    totalSeconds.toLocaleString();
+
+  /* Heart near seconds */
+
+  createTimerHeart();
+
+}
+
+
+/* =========================
+   HEARTS FROM TIMER
+========================= */
+
+function createTimerHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.className = "timer-heart";
+
+  const colors = [
+    "#ff4f91",
+    "#ff2f72",
+    "#ff79aa",
+    "#e91e63"
+  ];
+
+  heart.innerHTML = Math.random() > .5 ? "♥" : "♡";
+
+  heart.style.color =
+    colors[
+      Math.floor(
+        Math.random() * colors.length
+      )
+    ];
+
+  /*
+    Try to position near
+    the seconds text.
+  */
+
+  const timer =
+    document.getElementById("time");
+
+  const rect =
+    timer.getBoundingClientRect();
+
+  heart.style.left =
+    (rect.right - 40 + Math.random() * 35) + "px";
+
+  heart.style.top =
+    (rect.bottom - 8) + "px";
+
+  heart.style.setProperty(
+    "--x",
+    ((Math.random() * 90) - 45) + "px"
+  );
+
+  heart.style.setProperty(
+    "--r",
+    ((Math.random() * 50) - 25) + "deg"
+  );
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 1600);
+}
+
+
+/* =========================
+   MAIN HEART CLICK
+========================= */
+
+const messages = [
+
+  "Another second with you. ❤️",
+
+  "Still my favorite person. 💗",
+
+  "I would choose you again.",
+
+  "You make time feel beautiful. ❤️",
+
+  "One more little memory of us. 💕",
+
+  "Every second with you matters.",
+
+  "My favorite part of every day is you. ❤️",
+
+  "Still choosing us. 🫶",
+
+  "You make ordinary moments special.",
+
+  "Another second, another reason to smile. 💗",
+
+  "Somehow, I love you a little more today.",
+
+  "Our little forever keeps growing. ❤️",
+
+  "You are my favorite notification. 💌",
+
+  "Time passes, but us stays. ❤️",
+
+  "Just you and me, one second at a time. 💕"
+
+];
+
+
+function heartClick() {
+
+  const message =
+    messages[
+      Math.floor(
+        Math.random() * messages.length
+      )
+    ];
+
+  const box =
+    document.getElementById("clickMessage");
+
+  box.innerHTML = message;
+
+  box.classList.remove("show");
+
+  setTimeout(() => {
+    box.classList.add("show");
+  }, 50);
+
+  /* Heart burst */
+
+  for (let i = 0; i < 8; i++) {
+
+    createBurstHeart();
+  }
+}
+
+
+/* =========================
+   HEART BURST
+========================= */
+
+function createBurstHeart() {
+
+  const heart =
+    document.createElement("div");
+
+  heart.className = "timer-heart";
+
+  heart.innerHTML =
+    Math.random() > .5 ? "♥" : "♡";
+
+  const colors = [
+    "#ff3f82",
+    "#ff6fa4",
+    "#ff1744",
+    "#ff9bc0"
+  ];
+
+  heart.style.color =
+    colors[
+      Math.floor(
+        Math.random() * colors.length
+      )
+    ];
+
+  const mainHeart =
+    document.querySelector(".main-heart");
+
+  const rect =
+    mainHeart.getBoundingClientRect();
+
+  heart.style.left =
+    (rect.left + rect.width / 2) + "px";
+
+  heart.style.top =
+    (rect.top + rect.height / 2) + "px";
+
+  heart.style.setProperty(
+    "--x",
+    ((Math.random() * 180) - 90) + "px"
+  );
+
+  heart.style.setProperty(
+    "--r",
+    ((Math.random() * 80) - 40) + "deg"
+  );
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 1600);
+}
+
+
+/* =========================
+   SECRET
+========================= */
+
+function showSecret() {
+
+  const box =
+    document.getElementById("secretBox");
+
+  box.classList.toggle("show");
+}
+
+
+function unlockSecret() {
+
+  const password =
+    document.getElementById("password").value;
+
+  const correctPassword =
+    "30052026";
+
+  const message =
+    document.getElementById("secretMessage");
+
+  const error =
+    document.getElementById("error");
+
+  if (password === correctPassword) {
+
+    error.innerHTML = "";
+
+    message.classList.add("show");
+
+    for (let i = 0; i < 10; i++) {
+
+      setTimeout(() => {
+        createBurstHeart();
+      }, i * 70);
+
     }
 
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  </script>
+  } else {
+
+    message.classList.remove("show");
+
+    error.innerHTML =
+      "Hmm... that's not the secret password 👀";
+  }
+}
+
+
+/* =========================
+   BACKGROUND HEARTS
+========================= */
+
+function createBackgroundHeart() {
+
+  const heart =
+    document.createElement("div");
+
+  heart.className = "bg-heart";
+
+  heart.innerHTML =
+    Math.random() > .5 ? "♥" : "♡";
+
+  const colors = [
+    "#ff3f82",
+    "#ff5c93",
+    "#d9185c",
+    "#ff8ab5"
+  ];
+
+  heart.style.color =
+    colors[
+      Math.floor(
+        Math.random() * colors.length
+      )
+    ];
+
+  heart.style.left =
+    Math.random() * 100 + "vw";
+
+  heart.style.fontSize =
+    (8 + Math.random() * 9) + "px";
+
+  heart.style.animationDuration =
+    (7 + Math.random() * 6) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 13000);
+}
+
+
+/* Start */
+
+updateTimer();
+
+setInterval(updateTimer, 1000);
+
+setInterval(createBackgroundHeart, 1200);
+
+</script>
 
 </body>
 </html>
