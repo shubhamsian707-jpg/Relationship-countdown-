@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>D ♡ S — OUR LITTLE STORY</title>
 
@@ -11,7 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 html,body{
   margin:0;
@@ -28,13 +31,15 @@ body{
   color:#fff;
   font-family:"Montserrat",sans-serif;
 
-  /* SAME BACKGROUND */
   background:
     radial-gradient(circle at 50% 45%,rgba(255,40,110,.13),transparent 32%),
     radial-gradient(circle at 15% 15%,rgba(180,20,80,.13),transparent 30%),
     radial-gradient(circle at 85% 85%,rgba(255,30,90,.10),transparent 30%),
     linear-gradient(145deg,#050205,#12050c,#210711,#070307);
 }
+
+
+/* BACKGROUND GLOW */
 
 .glow{
   position:fixed;
@@ -61,9 +66,19 @@ body{
 }
 
 @keyframes breathe{
-  0%,100%{transform:scale(1);opacity:.22}
-  50%{transform:scale(1.18);opacity:.34}
+
+  0%,100%{
+    transform:scale(1);
+    opacity:.22;
+  }
+
+  50%{
+    transform:scale(1.18);
+    opacity:.34;
+  }
+
 }
+
 
 /* BACKGROUND PARTICLES */
 
@@ -79,25 +94,45 @@ body{
 }
 
 @keyframes particleMove{
-  0%{transform:translateY(20px);opacity:0}
-  20%{opacity:.45}
-  80%{opacity:.2}
-  100%{transform:translateY(-100vh);opacity:0}
+
+  0%{
+    transform:translateY(20px);
+    opacity:0;
+  }
+
+  20%{
+    opacity:.45;
+  }
+
+  80%{
+    opacity:.2;
+  }
+
+  100%{
+    transform:translateY(-100vh);
+    opacity:0;
+  }
+
 }
 
-/* MAIN CARD */
+
+/* CARD */
 
 .card{
   position:relative;
   z-index:2;
+
   width:min(92%,500px);
+
   padding:35px 22px 28px;
+
   text-align:center;
 
   border:1px solid rgba(255,110,160,.20);
   border-radius:30px;
 
   background:rgba(15,3,10,.45);
+
   backdrop-filter:blur(18px);
 
   box-shadow:
@@ -105,65 +140,97 @@ body{
     0 0 50px rgba(255,30,100,.05);
 }
 
+
 /* =========================
-   HEART METEOR AREA
+   HEART + METEOR AREA
 ========================= */
 
 .meteor-area{
   position:relative;
+
   height:82px;
+
   margin-bottom:8px;
+
   overflow:visible;
 }
 
-/* meteor itself */
 
-.heart-meteor{
+/* SLOW HEART */
+
+.target-heart{
   position:absolute;
-  top:32px;
-  left:-55px;
 
-  font-size:22px;
+  font-size:21px;
+
   color:#ff4d91;
 
   opacity:0;
 
-  filter:
-    drop-shadow(0 0 5px #ff4d91)
-    drop-shadow(0 0 13px rgba(255,40,120,.8));
-
   pointer-events:none;
+
+  z-index:2;
+
+  filter:
+    drop-shadow(0 0 6px #ff4d91)
+    drop-shadow(0 0 16px rgba(255,40,120,.8));
+
+  transition:
+    left 3.8s ease,
+    top 3.8s ease,
+    opacity .6s ease;
 }
 
-/* glowing meteor trail */
 
-.heart-meteor::before{
+/* METEOR */
+
+.collision-meteor{
+  position:absolute;
+
+  font-size:20px;
+
+  color:#ff5b9c;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  z-index:3;
+
+  filter:
+    drop-shadow(0 0 6px #ff4d91)
+    drop-shadow(0 0 16px rgba(255,30,120,.8));
+}
+
+
+/* METEOR TRAIL */
+
+.collision-meteor::before{
   content:"";
 
   position:absolute;
 
-  width:55px;
+  width:65px;
   height:3px;
 
-  top:10px;
-  right:13px;
+  right:12px;
+  top:9px;
 
-  border-radius:100%;
+  border-radius:50%;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(255,90,160,.15),
-      rgba(255,130,190,.8)
+      rgba(255,90,160,.2),
+      rgba(255,160,210,.95)
     );
 
   filter:blur(2px);
 }
 
-/* extra trail */
 
-.heart-meteor::after{
+.collision-meteor::after{
   content:"";
 
   position:absolute;
@@ -178,93 +245,102 @@ body{
 
   box-shadow:
     0 0 7px #ff5c9c;
-
-  opacity:.8;
 }
 
-/* random meteor directions */
 
-.meteor-left{
+/* METEOR FROM LEFT */
+
+.fly-left{
   animation:
-    meteorFromLeft 1.8s ease-in-out forwards;
+    meteorHitLeft 1.25s linear forwards;
 }
 
-.meteor-right{
-  animation:
-    meteorFromRight 1.8s ease-in-out forwards;
-}
-
-@keyframes meteorFromLeft{
+@keyframes meteorHitLeft{
 
   0%{
-    left:-60px;
-    top:32px;
+    left:-55px;
+    top:47px;
     opacity:0;
-    transform:scale(.4) rotate(-15deg);
+    transform:
+      rotate(-18deg)
+      scale(.6);
   }
 
-  12%{
-    opacity:1;
-  }
-
-  70%{
+  10%{
     opacity:1;
   }
 
   100%{
-    left:calc(100% + 60px);
-    top:48px;
-    opacity:0;
-    transform:scale(1.05) rotate(10deg);
+    left:50%;
+    top:35px;
+    opacity:1;
+    transform:
+      rotate(-18deg)
+      scale(1);
   }
+
 }
 
-@keyframes meteorFromRight{
+
+/* METEOR FROM RIGHT */
+
+.fly-right{
+  animation:
+    meteorHitRight 1.25s linear forwards;
+}
+
+@keyframes meteorHitRight{
 
   0%{
-    left:calc(100% + 60px);
-    top:42px;
+    left:calc(100% + 55px);
+    top:25px;
     opacity:0;
-    transform:scale(.4) rotate(15deg);
+    transform:
+      rotate(18deg)
+      scale(.6);
   }
 
-  12%{
-    opacity:1;
-  }
-
-  70%{
+  10%{
     opacity:1;
   }
 
   100%{
-    left:-60px;
-    top:27px;
-    opacity:0;
-    transform:scale(1.05) rotate(-10deg);
+    left:50%;
+    top:35px;
+    opacity:1;
+    transform:
+      rotate(18deg)
+      scale(1);
   }
+
 }
 
-/* BURST HEARTS */
 
-.burst-heart{
+/* DESTROY PARTICLES */
+
+.destroy-particle{
   position:absolute;
 
-  font-size:10px;
+  width:5px;
+  height:5px;
 
-  color:#ff4d91;
+  border-radius:50%;
+
+  background:#ff6b9e;
+
+  box-shadow:
+    0 0 6px #ff4d91,
+    0 0 13px rgba(255,60,140,.8);
 
   pointer-events:none;
 
   opacity:0;
 
-  filter:
-    drop-shadow(0 0 5px currentColor);
-
   animation:
-    burstHeart 1.15s ease-out forwards;
+    particleBurst 2.2s ease-out forwards;
 }
 
-@keyframes burstHeart{
+@keyframes particleBurst{
 
   0%{
     transform:
@@ -274,72 +350,105 @@ body{
     opacity:0;
   }
 
-  15%{
+  12%{
     opacity:1;
+
+    transform:
+      translate(0,0)
+      scale(1);
+  }
+
+  65%{
+    opacity:.75;
   }
 
   100%{
     transform:
-      translate(var(--bx),var(--by))
-      rotate(var(--br))
-      scale(1);
+      translate(var(--px),var(--py))
+      scale(.15);
 
     opacity:0;
   }
+
 }
+
 
 /* INITIALS */
 
 .initials{
   font-size:14px;
+
   font-weight:600;
+
   letter-spacing:4px;
+
   color:#ffb0c9;
+
   margin-bottom:17px;
+
   opacity:.9;
 }
 
 .initials span{
   display:inline-block;
-  animation:heartPulse 2.2s ease-in-out infinite;
+
+  animation:
+    heartPulse 2.2s ease-in-out infinite;
 }
 
 @keyframes heartPulse{
+
   0%,100%{
     transform:scale(1);
-    text-shadow:0 0 5px rgba(255,70,130,.3);
+
+    text-shadow:
+      0 0 5px rgba(255,70,130,.3);
   }
 
   50%{
     transform:scale(1.18);
-    text-shadow:0 0 14px rgba(255,70,130,.8);
+
+    text-shadow:
+      0 0 14px rgba(255,70,130,.8);
   }
+
 }
+
 
 /* TITLE */
 
 .title{
   margin:0;
+
   font-size:28px;
+
   font-weight:600;
+
   letter-spacing:6px;
 }
 
 .since{
   margin-top:10px;
+
   font-size:10px;
+
   letter-spacing:2px;
+
   opacity:.48;
 }
+
 
 /* COUNTDOWN */
 
 .countdown{
   position:relative;
+
   margin-top:30px;
+
   padding:27px 14px 23px;
 
   border:1px solid rgba(255,70,130,.52);
+
   border-radius:24px;
 
   background:
@@ -353,11 +462,14 @@ body{
     0 0 22px rgba(255,30,100,.12),
     inset 0 0 30px rgba(255,30,100,.025);
 
-  animation:boxPulse 3s ease-in-out infinite;
+  animation:
+    boxPulse 3s ease-in-out infinite;
+
   overflow:visible;
 }
 
 @keyframes boxPulse{
+
   0%,100%{
     box-shadow:
       0 0 18px rgba(255,30,100,.10),
@@ -369,9 +481,11 @@ body{
       0 0 30px rgba(255,30,100,.20),
       inset 0 0 30px rgba(255,30,100,.04);
   }
+
 }
 
-/* NUMBER TRANSITION */
+
+/* NUMBERS */
 
 .duration,
 .time,
@@ -383,32 +497,48 @@ body{
 
 .duration{
   font-size:23px;
+
   font-weight:600;
+
   letter-spacing:2px;
 }
 
 .time{
   margin-top:16px;
+
   font-size:15px;
+
   font-weight:500;
+
   letter-spacing:2px;
+
   opacity:.88;
 }
 
 .total{
   margin-top:20px;
+
   padding-top:16px;
-  border-top:1px solid rgba(255,255,255,.08);
+
+  border-top:
+    1px solid rgba(255,255,255,.08);
+
   font-size:8px;
+
   letter-spacing:3px;
+
   opacity:.45;
 }
 
 .total-number{
   margin-top:6px;
+
   font-size:16px;
+
   font-weight:600;
+
   letter-spacing:2px;
+
   opacity:.9;
 }
 
@@ -419,6 +549,7 @@ body{
     0 0 12px rgba(255,80,150,.8),
     0 0 24px rgba(255,30,110,.35);
 }
+
 
 /* BORDER SPARKLE */
 
@@ -437,9 +568,11 @@ body{
     0 0 12px #ff4d91;
 
   pointer-events:none;
+
   opacity:0;
 
-  animation:sparkleTravel 2s linear forwards;
+  animation:
+    sparkleTravel 2s linear forwards;
 }
 
 @keyframes sparkleTravel{
@@ -450,7 +583,9 @@ body{
     opacity:0;
   }
 
-  10%{opacity:1}
+  10%{
+    opacity:1;
+  }
 
   45%{
     left:98%;
@@ -479,16 +614,21 @@ body{
     top:50%;
     opacity:0;
   }
+
 }
+
 
 /* LOVE LINES */
 
 .line-box{
   min-height:58px;
+
   margin-top:24px;
 
   display:flex;
+
   justify-content:center;
+
   align-items:center;
 }
 
@@ -496,11 +636,15 @@ body{
   max-width:390px;
 
   font-size:12px;
+
   font-weight:500;
+
   line-height:1.8;
+
   letter-spacing:2px;
 
   opacity:0;
+
   transform:translateY(5px);
 
   transition:
@@ -510,13 +654,16 @@ body{
 
 .love-line.show{
   opacity:.78;
+
   transform:translateY(0);
 }
+
 
 /* FLYING HEARTS */
 
 .timer-heart{
   position:fixed;
+
   z-index:10;
 
   pointer-events:none;
@@ -554,12 +701,15 @@ body{
 
     opacity:0;
   }
+
 }
+
 
 /* HEART TRAIL */
 
 .trail-heart{
   position:fixed;
+
   z-index:9;
 
   pointer-events:none;
@@ -595,7 +745,9 @@ body{
 
     opacity:0;
   }
+
 }
+
 
 /* FOOTER */
 
@@ -603,10 +755,12 @@ body{
   margin-top:20px;
 
   font-size:8px;
+
   letter-spacing:3px;
 
   opacity:.25;
 }
+
 
 /* MOBILE */
 
@@ -633,58 +787,94 @@ body{
   .love-line{
     font-size:11px;
   }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="glow one"></div>
 <div class="glow two"></div>
 
+
 <div class="card">
 
-  <!-- HEART METEOR -->
 
-  <div class="meteor-area" id="meteorArea"></div>
+  <!-- HEART + METEOR -->
+
+  <div
+    class="meteor-area"
+    id="meteorArea">
+  </div>
+
 
   <div class="initials">
+
     D <span>♡</span> S
+
     •
+
     SINCE 30 MAY 2026
+
   </div>
+
 
   <h1 class="title">
     OUR LITTLE STORY
   </h1>
 
+
   <div class="since">
     12:40 PM
   </div>
 
+
   <!-- COUNTDOWN -->
 
-  <div class="countdown" id="countdownBox">
+  <div
+    class="countdown"
+    id="countdownBox">
 
-    <div class="duration" id="duration">
+    <div
+      class="duration"
+      id="duration">
+
       00 MONTHS • 00 DAYS
+
     </div>
 
-    <div class="time" id="time">
+
+    <div
+      class="time"
+      id="time">
+
       00 HRS • 00 MINS • 00 SECS
+
     </div>
+
 
     <div class="total">
+
       TOTAL SECONDS
+
     </div>
 
-    <div class="total-number" id="totalSeconds">
+
+    <div
+      class="total-number"
+      id="totalSeconds">
+
       0
+
     </div>
 
   </div>
 
-  <!-- 15 LOVE LINES -->
+
+  <!-- LOVE LINES -->
 
   <div class="line-box">
 
@@ -695,22 +885,28 @@ body{
 
   </div>
 
+
   <div class="footer">
+
     EVERY SECOND BECOMES A MEMORY.
+
   </div>
 
 </div>
 
+
 <script>
 
+
 /* ===============================
-   START DATE
+   RELATIONSHIP START
 ================================ */
 
 const start =
   new Date(
     "2026-05-30T12:40:00+05:30"
   );
+
 
 let lastSecond = -1;
 
@@ -721,112 +917,156 @@ let lastSecond = -1;
 
 function updateTimer(){
 
-  const now = new Date();
+  const now =
+    new Date();
+
 
   const difference =
     now - start;
 
-  if(difference < 0) return;
+
+  if(difference < 0)
+    return;
+
 
   const totalSeconds =
     Math.floor(
       difference / 1000
     );
 
+
   let cursor =
     new Date(start);
 
+
   let months = 0;
+
 
   while(true){
 
     const next =
       new Date(cursor);
 
+
     next.setMonth(
       next.getMonth() + 1
     );
 
+
     if(next <= now){
 
       months++;
-      cursor = next;
+
+      cursor =
+        next;
 
     }else{
 
       break;
 
     }
+
   }
+
 
   let remaining =
     now - cursor;
+
 
   const days =
     Math.floor(
       remaining / 86400000
     );
 
-  remaining %= 86400000;
+
+  remaining %=
+    86400000;
+
 
   const hours =
     Math.floor(
       remaining / 3600000
     );
 
-  remaining %= 3600000;
+
+  remaining %=
+    3600000;
+
 
   const minutes =
     Math.floor(
       remaining / 60000
     );
 
+
   const seconds =
     Math.floor(
-      (remaining % 60000) / 1000
+      (remaining % 60000) /
+      1000
     );
+
 
   const duration =
     document.getElementById(
       "duration"
     );
 
+
   const time =
     document.getElementById(
       "time"
     );
+
 
   const total =
     document.getElementById(
       "totalSeconds"
     );
 
+
   duration.innerHTML =
+
     String(months).padStart(2,"0") +
+
     " MONTHS • " +
+
     String(days).padStart(2,"0") +
+
     " DAYS";
 
+
   time.innerHTML =
+
     String(hours).padStart(2,"0") +
+
     " HRS • " +
+
     String(minutes).padStart(2,"0") +
+
     " MINS • " +
+
     String(seconds).padStart(2,"0") +
+
     " SECS";
+
 
   total.innerHTML =
     totalSeconds.toLocaleString();
 
+
   if(seconds !== lastSecond){
 
-    lastSecond = seconds;
+    lastSecond =
+      seconds;
+
 
     flashNumber(time);
+
 
     createTimerHeart();
 
   }
+
 }
 
 
@@ -840,11 +1080,14 @@ function flashNumber(element){
     "number-flash"
   );
 
+
   void element.offsetWidth;
+
 
   element.classList.add(
     "number-flash"
   );
+
 
   setTimeout(() => {
 
@@ -853,11 +1096,12 @@ function flashNumber(element){
     );
 
   },250);
+
 }
 
 
 /* ===============================
-   FLYING HEART FROM COUNTDOWN
+   FLYING HEARTS
 ================================ */
 
 function createTimerHeart(){
@@ -867,20 +1111,26 @@ function createTimerHeart(){
       "div"
     );
 
+
   heart.className =
     "timer-heart";
+
 
   heart.innerHTML =
     Math.random() > .5
       ? "♥"
       : "♡";
 
+
   const colors = [
+
     "#ff3d82",
     "#ff5c9a",
     "#ff1744",
     "#ff8ab7"
+
   ];
+
 
   heart.style.color =
     colors[
@@ -890,13 +1140,16 @@ function createTimerHeart(){
       )
     ];
 
+
   const timer =
     document.getElementById(
       "time"
     );
 
+
   const rect =
     timer.getBoundingClientRect();
+
 
   heart.style.left =
     (
@@ -905,46 +1158,59 @@ function createTimerHeart(){
       Math.random()*30
     ) + "px";
 
+
   heart.style.top =
     (
       rect.bottom -
       8
     ) + "px";
 
+
   const direction =
     Math.random() < .5
       ? -1
       : 1;
 
+
   const distance =
     25 +
     Math.random()*65;
 
+
   heart.style.setProperty(
     "--x",
-    (direction * distance) + "px"
+    (
+      direction *
+      distance
+    ) + "px"
   );
+
 
   heart.style.setProperty(
     "--r",
     (
-      Math.random()*50 - 25
+      Math.random()*50 -
+      25
     ) + "deg"
   );
+
 
   document.body.appendChild(
     heart
   );
+
 
   createTrail(
     rect,
     direction
   );
 
+
   setTimeout(
     () => heart.remove(),
     1800
   );
+
 }
 
 
@@ -957,18 +1223,25 @@ function createTrail(
   direction
 ){
 
-  for(let i=0;i<2;i++){
+  for(
+    let i=0;
+    i<2;
+    i++
+  ){
 
     const trail =
       document.createElement(
         "div"
       );
 
+
     trail.className =
       "trail-heart";
 
+
     trail.innerHTML =
       "♥";
+
 
     trail.style.left =
       (
@@ -977,12 +1250,14 @@ function createTrail(
         Math.random()*20
       ) + "px";
 
+
     trail.style.top =
       (
         rect.bottom -
         5 +
         i*7
       ) + "px";
+
 
     trail.style.setProperty(
       "--tx",
@@ -992,128 +1267,238 @@ function createTrail(
       ) + "px"
     );
 
+
     document.body.appendChild(
       trail
     );
+
 
     setTimeout(
       () => trail.remove(),
       1300
     );
+
   }
+
+}
+
+
+/* =================================
+   ❤️ HEART → ☄️ METEOR → 💥 PARTICLES
+================================= */
+
+const meteorArea =
+  document.getElementById(
+    "meteorArea"
+  );
+
+
+function startHeartScene(){
+
+  const heart =
+    document.createElement(
+      "div"
+    );
+
+
+  heart.className =
+    "target-heart";
+
+
+  heart.innerHTML =
+    "♥";
+
+
+  meteorArea.appendChild(
+    heart
+  );
+
+
+  /*
+    HEART APPEARS
+  */
+
+  const startSide =
+    Math.random() < .5
+      ? 18
+      : 82;
+
+
+  const startTop =
+    18 +
+    Math.random()*20;
+
+
+  heart.style.left =
+    startSide + "%";
+
+
+  heart.style.top =
+    startTop + "px";
+
+
+  setTimeout(() => {
+
+    heart.style.opacity =
+      ".95";
+
+  },300);
+
+
+  /*
+    HEART MOVES SLOWLY
+  */
+
+  setTimeout(() => {
+
+    heart.style.left =
+      (
+        100 -
+        startSide
+      ) + "%";
+
+
+    heart.style.top =
+      (
+        35 +
+        Math.random()*15
+      ) + "px";
+
+
+  },800);
+
+
+  /*
+    METEOR COMES AFTER HEART
+  */
+
+  setTimeout(() => {
+
+    launchCollisionMeteor(
+      heart
+    );
+
+  },4100);
+
 }
 
 
 /* ===============================
-   HEART METEOR ☄️❤️
+   METEOR
 ================================ */
 
-function launchMeteor(){
-
-  const area =
-    document.getElementById(
-      "meteorArea"
-    );
+function launchCollisionMeteor(
+  heart
+){
 
   const meteor =
     document.createElement(
       "div"
     );
 
+
   meteor.className =
-    "heart-meteor";
+    "collision-meteor";
+
 
   meteor.innerHTML =
     "♥";
 
+
   const fromLeft =
     Math.random() < .5;
 
+
   meteor.classList.add(
     fromLeft
-      ? "meteor-left"
-      : "meteor-right"
+      ? "fly-left"
+      : "fly-right"
   );
 
-  area.appendChild(
+
+  meteorArea.appendChild(
     meteor
   );
 
 
-  /* Burst when meteor crosses center */
+  /*
+    COLLISION
+  */
 
   setTimeout(() => {
 
-    createMeteorBurst(
-      area
+    destroyHeart(
+      heart,
+      meteor
     );
 
-  },900);
-
-
-  setTimeout(() => {
-
-    meteor.remove();
-
-  },1900);
+  },1250);
 
 }
 
 
 /* ===============================
-   METEOR HEART BURST
+   HEART DESTROY
 ================================ */
 
-function createMeteorBurst(area){
+function destroyHeart(
+  heart,
+  meteor
+){
+
+  heart.remove();
+
+  meteor.remove();
+
 
   const centerX =
-    area.offsetWidth / 2;
+    meteorArea.offsetWidth / 2;
+
 
   const centerY =
-    area.offsetHeight / 2;
+    37;
 
+
+  /*
+    GLOWING PARTICLES
+  */
 
   for(
     let i=0;
-    i<7;
+    i<26;
     i++
   ){
 
-    const heart =
+    const particle =
       document.createElement(
         "div"
       );
 
-    heart.className =
-      "burst-heart";
 
-    heart.innerHTML =
-      Math.random() > .5
-        ? "♥"
-        : "♡";
+    particle.className =
+      "destroy-particle";
 
 
-    heart.style.left =
+    particle.style.left =
       centerX + "px";
 
-    heart.style.top =
+
+    particle.style.top =
       centerY + "px";
 
 
     const angle =
-      (
-        Math.PI * 2 * i / 7
-      ) +
-      (Math.random()-.5)*.5;
+      Math.random() *
+      Math.PI * 2;
 
 
     const distance =
-      22 +
-      Math.random()*30;
+      25 +
+      Math.random()*75;
 
 
-    heart.style.setProperty(
-      "--bx",
+    particle.style.setProperty(
+      "--px",
       (
         Math.cos(angle) *
         distance
@@ -1121,8 +1506,8 @@ function createMeteorBurst(area){
     );
 
 
-    heart.style.setProperty(
-      "--by",
+    particle.style.setProperty(
+      "--py",
       (
         Math.sin(angle) *
         distance
@@ -1130,45 +1515,41 @@ function createMeteorBurst(area){
     );
 
 
-    heart.style.setProperty(
-      "--br",
-      (
-        Math.random()*80 - 40
-      ) + "deg"
-    );
-
-
-    area.appendChild(
-      heart
+    meteorArea.appendChild(
+      particle
     );
 
 
     setTimeout(
-      () => heart.remove(),
-      1200
+      () => particle.remove(),
+      2300
     );
+
   }
-}
 
 
-/* RANDOM METEOR TIMING */
-
-function scheduleMeteor(){
-
-  const delay =
-    4500 +
-    Math.random()*5000;
+  /*
+    REPEAT
+  */
 
   setTimeout(() => {
 
-    launchMeteor();
+    startHeartScene();
 
-    scheduleMeteor();
+  },3200);
 
-  },delay);
 }
 
-scheduleMeteor();
+
+/*
+  START FIRST SEQUENCE
+*/
+
+setTimeout(() => {
+
+  startHeartScene();
+
+},1200);
 
 
 /* ===============================
@@ -1209,12 +1590,16 @@ const loveLines = [
 
 ];
 
-let lineIndex = 0;
+
+let lineIndex =
+  0;
+
 
 const loveLine =
   document.getElementById(
     "loveLine"
   );
+
 
 function showNextLine(){
 
@@ -1222,10 +1607,12 @@ function showNextLine(){
     "show"
   );
 
+
   setTimeout(() => {
 
     loveLine.innerHTML =
       loveLines[lineIndex];
+
 
     lineIndex =
       (
@@ -1233,14 +1620,18 @@ function showNextLine(){
       ) %
       loveLines.length;
 
+
     loveLine.classList.add(
       "show"
     );
 
   },1500);
+
 }
 
+
 showNextLine();
+
 
 setInterval(
   showNextLine,
@@ -1259,23 +1650,29 @@ function createSparkle(){
       "countdownBox"
     );
 
+
   const sparkle =
     document.createElement(
       "div"
     );
 
+
   sparkle.className =
     "border-sparkle";
+
 
   box.appendChild(
     sparkle
   );
 
+
   setTimeout(
     () => sparkle.remove(),
     2100
   );
+
 }
+
 
 setInterval(
   createSparkle,
@@ -1294,15 +1691,19 @@ function createParticle(){
       "div"
     );
 
+
   particle.className =
     "particle";
+
 
   particle.style.left =
     Math.random()*100 +
     "vw";
 
+
   particle.style.bottom =
     "-10px";
+
 
   particle.style.animationDuration =
     (
@@ -1310,15 +1711,19 @@ function createParticle(){
       Math.random()*7
     ) + "s";
 
+
   document.body.appendChild(
     particle
   );
+
 
   setTimeout(
     () => particle.remove(),
     15000
   );
+
 }
+
 
 setInterval(
   createParticle,
@@ -1326,9 +1731,10 @@ setInterval(
 );
 
 
-/* START */
+/* START COUNTDOWN */
 
 updateTimer();
+
 
 setInterval(
   updateTimer,
