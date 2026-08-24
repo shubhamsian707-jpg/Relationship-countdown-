@@ -29,6 +29,7 @@ body{
   overflow:hidden;
   color:#fff;
   font-family:"Montserrat",sans-serif;
+
   background:
     radial-gradient(circle at 50% 45%,rgba(255,40,110,.13),transparent 32%),
     radial-gradient(circle at 15% 15%,rgba(180,20,80,.13),transparent 30%),
@@ -73,7 +74,7 @@ body{
   }
 }
 
-/* SUBTLE BACKGROUND PARTICLES */
+/* BACKGROUND PARTICLES */
 
 .particle{
   position:fixed;
@@ -123,6 +124,164 @@ body{
     0 0 50px rgba(255,30,100,.05);
 }
 
+/* INJECTION AREA ABOVE BOX */
+
+.injection-area{
+  height:82px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:8px;
+
+  opacity:0;
+  transform:translateY(5px);
+
+  animation:injectionShow 7s ease-in-out infinite;
+}
+
+.injection{
+  position:relative;
+  width:76px;
+  height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transform:rotate(-7deg);
+
+  filter:
+    drop-shadow(0 0 5px rgba(255,60,130,.7))
+    drop-shadow(0 0 12px rgba(255,40,120,.35));
+}
+
+/* syringe body */
+
+.syringe-body{
+  position:relative;
+  width:42px;
+  height:14px;
+
+  border:1px solid rgba(255,170,200,.85);
+  border-radius:4px;
+
+  background:rgba(255,70,140,.12);
+  overflow:hidden;
+}
+
+/* LOVE LIQUID */
+
+.love-liquid{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,40,110,.75),
+      rgba(255,120,180,.95)
+    );
+
+  box-shadow:
+    0 0 8px rgba(255,40,120,.8);
+}
+
+/* tiny hearts inside */
+
+.love-liquid::after{
+  content:"♥  ♥  ♥";
+  position:absolute;
+  left:4px;
+  top:0px;
+
+  font-size:7px;
+  line-height:13px;
+
+  color:#fff;
+  opacity:.9;
+
+  animation:liquidMove 2s linear infinite;
+}
+
+@keyframes liquidMove{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-8px);
+  }
+}
+
+/* syringe needle */
+
+.needle{
+  width:17px;
+  height:1px;
+  background:#ffc2d8;
+  box-shadow:0 0 5px #ff5b94;
+}
+
+/* syringe plunger */
+
+.plunger{
+  width:8px;
+  height:19px;
+
+  border:1px solid #ff9dbc;
+  border-radius:2px;
+
+  margin-right:2px;
+
+  box-shadow:0 0 6px rgba(255,70,140,.5);
+}
+
+/* syringe handle */
+
+.handle{
+  position:absolute;
+  right:1px;
+
+  width:6px;
+  height:18px;
+
+  border:1px solid #ff9dbc;
+  border-radius:2px;
+}
+
+.injection-text{
+  margin-top:7px;
+
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:2px;
+
+  color:#ffb5cc;
+
+  text-shadow:
+    0 0 8px rgba(255,60,130,.7);
+}
+
+@keyframes injectionShow{
+  0%,10%{
+    opacity:0;
+    transform:translateY(5px);
+  }
+
+  18%,72%{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  82%,100%{
+    opacity:0;
+    transform:translateY(-5px);
+  }
+}
+
 /* INITIALS */
 
 .initials{
@@ -136,6 +295,7 @@ body{
 
 .initials span{
   display:inline-block;
+
   animation:heartPulse 2.2s ease-in-out infinite;
 }
 
@@ -144,6 +304,7 @@ body{
     transform:scale(1);
     text-shadow:0 0 5px rgba(255,70,130,.3);
   }
+
   50%{
     transform:scale(1.18);
     text-shadow:0 0 14px rgba(255,70,130,.8);
@@ -166,7 +327,7 @@ body{
   opacity:.48;
 }
 
-/* COUNTDOWN */
+/* COUNTDOWN BOX */
 
 .countdown{
   position:relative;
@@ -176,11 +337,12 @@ body{
   border:1px solid rgba(255,70,130,.52);
   border-radius:24px;
 
-  background:linear-gradient(
-    145deg,
-    rgba(255,30,100,.075),
-    rgba(255,255,255,.025)
-  );
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,30,100,.075),
+      rgba(255,255,255,.025)
+    );
 
   box-shadow:
     0 0 22px rgba(255,30,100,.12),
@@ -195,6 +357,7 @@ body{
       0 0 18px rgba(255,30,100,.10),
       inset 0 0 25px rgba(255,30,100,.02);
   }
+
   50%{
     box-shadow:
       0 0 30px rgba(255,30,100,.20),
@@ -219,6 +382,7 @@ body{
 .total{
   margin-top:20px;
   padding-top:16px;
+
   border-top:1px solid rgba(255,255,255,.08);
 
   font-size:8px;
@@ -234,7 +398,7 @@ body{
   opacity:.9;
 }
 
-/* AUTOMATIC LINES */
+/* 15 AUTOMATIC LINES */
 
 .line-box{
   min-height:58px;
@@ -306,8 +470,10 @@ body{
 
 .footer{
   margin-top:20px;
+
   font-size:8px;
   letter-spacing:3px;
+
   opacity:.25;
 }
 
@@ -345,19 +511,47 @@ body{
 
 <div class="card">
 
+  <!-- INJECTION ABOVE THE COUNTDOWN -->
+
+  <div class="injection-area">
+
+    <div class="injection">
+
+      <div class="plunger"></div>
+
+      <div class="syringe-body">
+        <div class="love-liquid"></div>
+      </div>
+
+      <div class="needle"></div>
+
+      <div class="handle"></div>
+
+    </div>
+
+    <div class="injection-text">
+      NO INJECTIONS ALLOWED HERE. ❤️
+    </div>
+
+  </div>
+
+
   <div class="initials">
     D <span>♡</span> S
     •
     SINCE 30 MAY 2026
   </div>
 
+
   <h1 class="title">
     OUR LITTLE STORY
   </h1>
 
+
   <div class="since">
     12:40 PM
   </div>
+
 
   <!-- COUNTDOWN -->
 
@@ -381,11 +575,15 @@ body{
 
   </div>
 
+
   <!-- AUTOMATIC LOVE LINES -->
 
   <div class="line-box">
+
     <div class="love-line" id="loveLine"></div>
+
   </div>
+
 
   <div class="footer">
     EVERY SECOND BECOMES A MEMORY.
@@ -393,43 +591,46 @@ body{
 
 </div>
 
+
 <script>
 
-/* =================================
+/* ===============================
    RELATIONSHIP START
-================================= */
+================================ */
 
 const start =
   new Date("2026-05-30T12:40:00+05:30");
 
 
-/* =================================
+/* ===============================
    COUNTDOWN
-================================= */
+================================ */
 
 let lastSecond = -1;
 
 function updateTimer(){
 
-  const now = new Date();
+  const now =
+    new Date();
 
   const difference =
     now - start;
 
-  if(difference < 0) return;
+  if(difference < 0)
+    return;
+
 
   const totalSeconds =
-    Math.floor(difference / 1000);
+    Math.floor(
+      difference / 1000
+    );
 
-  const totalDays =
-    Math.floor(difference / 86400000);
-
-  /* COMPLETED MONTHS */
 
   let cursor =
     new Date(start);
 
   let months = 0;
+
 
   while(true){
 
@@ -439,6 +640,7 @@ function updateTimer(){
     next.setMonth(
       next.getMonth() + 1
     );
+
 
     if(next <= now){
 
@@ -450,12 +652,13 @@ function updateTimer(){
       break;
 
     }
+
   }
 
-  /* REMAINING TIME */
 
   let remaining =
     now - cursor;
+
 
   const days =
     Math.floor(
@@ -464,6 +667,7 @@ function updateTimer(){
 
   remaining %= 86400000;
 
+
   const hours =
     Math.floor(
       remaining / 3600000
@@ -471,17 +675,18 @@ function updateTimer(){
 
   remaining %= 3600000;
 
+
   const minutes =
     Math.floor(
       remaining / 60000
     );
+
 
   const seconds =
     Math.floor(
       (remaining % 60000) / 1000
     );
 
-  /* DISPLAY */
 
   document.getElementById(
     "duration"
@@ -492,6 +697,7 @@ function updateTimer(){
 
     String(days).padStart(2,"0") +
     " DAYS";
+
 
   document.getElementById(
     "time"
@@ -506,27 +712,30 @@ function updateTimer(){
     String(seconds).padStart(2,"0") +
     " SECS";
 
+
   document.getElementById(
     "totalSeconds"
   ).innerHTML =
     totalSeconds.toLocaleString();
 
 
-  /* NEW SECOND */
+  /* NEW SECOND = HEART */
 
   if(seconds !== lastSecond){
 
-    lastSecond = seconds;
+    lastSecond =
+      seconds;
 
     createTimerHeart();
+
   }
 
 }
 
 
-/* =================================
-   HEART NEXT TO SECONDS
-================================= */
+/* ===============================
+   HEART NEAR SECONDS
+================================ */
 
 function createTimerHeart(){
 
@@ -541,12 +750,14 @@ function createTimerHeart(){
       ? "♥"
       : "♡";
 
+
   const colors = [
     "#ff3d82",
     "#ff5c9a",
     "#ff1744",
     "#ff8ab7"
   ];
+
 
   heart.style.color =
     colors[
@@ -556,11 +767,16 @@ function createTimerHeart(){
       )
     ];
 
+
   const timer =
-    document.getElementById("time");
+    document.getElementById(
+      "time"
+    );
+
 
   const rect =
     timer.getBoundingClientRect();
+
 
   heart.style.left =
     (
@@ -569,11 +785,13 @@ function createTimerHeart(){
       Math.random()*30
     ) + "px";
 
+
   heart.style.top =
     (
       rect.bottom -
       8
     ) + "px";
+
 
   heart.style.setProperty(
     "--x",
@@ -583,6 +801,7 @@ function createTimerHeart(){
     ) + "px"
   );
 
+
   heart.style.setProperty(
     "--r",
     (
@@ -591,20 +810,23 @@ function createTimerHeart(){
     ) + "deg"
   );
 
+
   document.body.appendChild(
     heart
   );
+
 
   setTimeout(
     () => heart.remove(),
     1800
   );
+
 }
 
 
-/* =================================
-   15 AUTOMATIC LOVE LINES
-================================= */
+/* ===============================
+   15 LOVE LINES
+================================ */
 
 const loveLines = [
 
@@ -640,7 +862,9 @@ const loveLines = [
 
 ];
 
+
 let lineIndex = 0;
+
 
 const loveLine =
   document.getElementById(
@@ -650,36 +874,33 @@ const loveLine =
 
 function showNextLine(){
 
-  /* FADE OUT */
-
   loveLine.classList.remove(
     "show"
   );
+
 
   setTimeout(() => {
 
     loveLine.innerHTML =
       loveLines[lineIndex];
 
+
     lineIndex =
       (lineIndex + 1) %
       loveLines.length;
 
-    /* FADE IN */
 
     loveLine.classList.add(
       "show"
     );
 
   },1500);
+
 }
 
 
-/* FIRST LINE */
-
 showNextLine();
 
-/* CHANGE EVERY 6 SECONDS */
 
 setInterval(
   showNextLine,
@@ -687,36 +908,47 @@ setInterval(
 );
 
 
-/* =================================
+/* ===============================
    BACKGROUND PARTICLES
-================================= */
+================================ */
 
 function createParticle(){
 
   const particle =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   particle.className =
     "particle";
 
+
   particle.style.left =
-    Math.random()*100 + "vw";
+    Math.random()*100 +
+    "vw";
+
 
   particle.style.bottom =
     "-10px";
 
+
   particle.style.animationDuration =
-    (8 + Math.random()*7) + "s";
+    (8 + Math.random()*7) +
+    "s";
+
 
   document.body.appendChild(
     particle
   );
 
+
   setTimeout(
     () => particle.remove(),
     15000
   );
+
 }
+
 
 setInterval(
   createParticle,
@@ -727,6 +959,7 @@ setInterval(
 /* START */
 
 updateTimer();
+
 
 setInterval(
   updateTimer,
