@@ -30,6 +30,7 @@ body{
   color:#fff;
   font-family:"Montserrat",sans-serif;
 
+  /* SAME BACKGROUND */
   background:
     radial-gradient(circle at 50% 45%,rgba(255,40,110,.13),transparent 32%),
     radial-gradient(circle at 15% 15%,rgba(180,20,80,.13),transparent 30%),
@@ -68,6 +69,7 @@ body{
     transform:scale(1);
     opacity:.22;
   }
+
   50%{
     transform:scale(1.18);
     opacity:.34;
@@ -92,12 +94,15 @@ body{
     transform:translateY(20px);
     opacity:0;
   }
+
   20%{
     opacity:.45;
   }
+
   80%{
     opacity:.2;
   }
+
   100%{
     transform:translateY(-100vh);
     opacity:0;
@@ -109,14 +114,18 @@ body{
 .card{
   position:relative;
   z-index:2;
+
   width:min(92%,500px);
+
   padding:35px 22px 28px;
+
   text-align:center;
 
   border:1px solid rgba(255,110,160,.20);
   border-radius:30px;
 
   background:rgba(15,3,10,.45);
+
   backdrop-filter:blur(18px);
 
   box-shadow:
@@ -124,10 +133,11 @@ body{
     0 0 50px rgba(255,30,100,.05);
 }
 
-/* INJECTION AREA ABOVE BOX */
+/* INJECTION */
 
 .injection-area{
   height:82px;
+
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -138,13 +148,15 @@ body{
   opacity:0;
   transform:translateY(5px);
 
-  animation:injectionShow 7s ease-in-out infinite;
+  animation:injectionShow 5s ease-in-out infinite;
 }
 
 .injection{
   position:relative;
+
   width:76px;
   height:24px;
+
   display:flex;
   align-items:center;
   justify-content:center;
@@ -156,10 +168,11 @@ body{
     drop-shadow(0 0 12px rgba(255,40,120,.35));
 }
 
-/* syringe body */
+/* SYRINGE */
 
 .syringe-body{
   position:relative;
+
   width:42px;
   height:14px;
 
@@ -167,15 +180,18 @@ body{
   border-radius:4px;
 
   background:rgba(255,70,140,.12);
+
   overflow:hidden;
 }
 
-/* LOVE LIQUID */
+/* LOVE INSIDE */
 
 .love-liquid{
   position:absolute;
+
   left:0;
   top:0;
+
   width:100%;
   height:100%;
 
@@ -190,18 +206,19 @@ body{
     0 0 8px rgba(255,40,120,.8);
 }
 
-/* tiny hearts inside */
-
 .love-liquid::after{
   content:"♥  ♥  ♥";
+
   position:absolute;
+
   left:4px;
-  top:0px;
+  top:0;
 
   font-size:7px;
   line-height:13px;
 
   color:#fff;
+
   opacity:.9;
 
   animation:liquidMove 2s linear infinite;
@@ -211,21 +228,21 @@ body{
   from{
     transform:translateX(0);
   }
+
   to{
     transform:translateX(-8px);
   }
 }
 
-/* syringe needle */
-
 .needle{
   width:17px;
   height:1px;
-  background:#ffc2d8;
-  box-shadow:0 0 5px #ff5b94;
-}
 
-/* syringe plunger */
+  background:#ffc2d8;
+
+  box-shadow:
+    0 0 5px #ff5b94;
+}
 
 .plunger{
   width:8px;
@@ -236,10 +253,9 @@ body{
 
   margin-right:2px;
 
-  box-shadow:0 0 6px rgba(255,70,140,.5);
+  box-shadow:
+    0 0 6px rgba(255,70,140,.5);
 }
-
-/* syringe handle */
 
 .handle{
   position:absolute;
@@ -257,6 +273,7 @@ body{
 
   font-size:8px;
   font-weight:600;
+
   letter-spacing:2px;
 
   color:#ffb5cc;
@@ -265,18 +282,21 @@ body{
     0 0 8px rgba(255,60,130,.7);
 }
 
+/* FASTER FADE */
+
 @keyframes injectionShow{
-  0%,10%{
+
+  0%,8%{
     opacity:0;
     transform:translateY(5px);
   }
 
-  18%,72%{
+  18%,50%{
     opacity:1;
     transform:translateY(0);
   }
 
-  82%,100%{
+  62%,100%{
     opacity:0;
     transform:translateY(-5px);
   }
@@ -287,27 +307,37 @@ body{
 .initials{
   font-size:14px;
   font-weight:600;
+
   letter-spacing:4px;
+
   color:#ffb0c9;
+
   margin-bottom:17px;
+
   opacity:.9;
 }
 
 .initials span{
   display:inline-block;
 
-  animation:heartPulse 2.2s ease-in-out infinite;
+  animation:
+    heartPulse 2.2s ease-in-out infinite;
 }
 
 @keyframes heartPulse{
+
   0%,100%{
     transform:scale(1);
-    text-shadow:0 0 5px rgba(255,70,130,.3);
+
+    text-shadow:
+      0 0 5px rgba(255,70,130,.3);
   }
 
   50%{
     transform:scale(1.18);
-    text-shadow:0 0 14px rgba(255,70,130,.8);
+
+    text-shadow:
+      0 0 14px rgba(255,70,130,.8);
   }
 }
 
@@ -315,26 +345,34 @@ body{
 
 .title{
   margin:0;
+
   font-size:28px;
   font-weight:600;
+
   letter-spacing:6px;
 }
 
 .since{
   margin-top:10px;
+
   font-size:10px;
+
   letter-spacing:2px;
+
   opacity:.48;
 }
 
-/* COUNTDOWN BOX */
+/* COUNTDOWN */
 
 .countdown{
   position:relative;
+
   margin-top:30px;
+
   padding:27px 14px 23px;
 
   border:1px solid rgba(255,70,130,.52);
+
   border-radius:24px;
 
   background:
@@ -348,10 +386,14 @@ body{
     0 0 22px rgba(255,30,100,.12),
     inset 0 0 30px rgba(255,30,100,.025);
 
-  animation:boxPulse 3s ease-in-out infinite;
+  animation:
+    boxPulse 3s ease-in-out infinite;
+
+  overflow:visible;
 }
 
 @keyframes boxPulse{
+
   0%,100%{
     box-shadow:
       0 0 18px rgba(255,30,100,.10),
@@ -365,47 +407,147 @@ body{
   }
 }
 
+/* COUNTDOWN NUMBERS */
+
+.duration,
+.time,
+.total-number{
+  transition:
+    text-shadow .25s ease,
+    transform .25s ease;
+}
+
 .duration{
   font-size:23px;
+
   font-weight:600;
+
   letter-spacing:2px;
 }
 
 .time{
   margin-top:16px;
+
   font-size:15px;
+
   font-weight:500;
+
   letter-spacing:2px;
+
   opacity:.88;
 }
 
 .total{
   margin-top:20px;
+
   padding-top:16px;
 
-  border-top:1px solid rgba(255,255,255,.08);
+  border-top:
+    1px solid rgba(255,255,255,.08);
 
   font-size:8px;
+
   letter-spacing:3px;
+
   opacity:.45;
 }
 
 .total-number{
   margin-top:6px;
+
   font-size:16px;
+
   font-weight:600;
+
   letter-spacing:2px;
+
   opacity:.9;
 }
 
-/* 15 AUTOMATIC LINES */
+.number-flash{
+  transform:scale(1.035);
+
+  text-shadow:
+    0 0 12px rgba(255,80,150,.8),
+    0 0 24px rgba(255,30,110,.35);
+}
+
+/* BORDER SPARKLE */
+
+.border-sparkle{
+  position:absolute;
+
+  width:4px;
+  height:4px;
+
+  border-radius:50%;
+
+  background:#ffd6e5;
+
+  box-shadow:
+    0 0 5px #fff,
+    0 0 12px #ff4d91;
+
+  pointer-events:none;
+
+  opacity:0;
+
+  animation:
+    sparkleTravel 2s linear forwards;
+}
+
+@keyframes sparkleTravel{
+
+  0%{
+    left:4%;
+    top:-2px;
+    opacity:0;
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  45%{
+    left:98%;
+    top:-2px;
+    opacity:1;
+  }
+
+  55%{
+    left:100%;
+    top:50%;
+  }
+
+  70%{
+    left:98%;
+    top:calc(100% - 2px);
+  }
+
+  88%{
+    left:4%;
+    top:calc(100% - 2px);
+    opacity:.7;
+  }
+
+  100%{
+    left:0%;
+    top:50%;
+    opacity:0;
+  }
+}
+
+/* LOVE LINES */
 
 .line-box{
   min-height:58px;
+
   margin-top:24px;
 
   display:flex;
+
   justify-content:center;
+
   align-items:center;
 }
 
@@ -413,11 +555,15 @@ body{
   max-width:390px;
 
   font-size:12px;
+
   font-weight:500;
+
   line-height:1.8;
+
   letter-spacing:2px;
 
   opacity:0;
+
   transform:translateY(5px);
 
   transition:
@@ -427,28 +573,37 @@ body{
 
 .love-line.show{
   opacity:.78;
+
   transform:translateY(0);
 }
 
-/* HEARTS FROM SECONDS */
+/* FLYING HEART */
 
 .timer-heart{
   position:fixed;
+
   z-index:10;
+
   pointer-events:none;
 
   font-size:12px;
+
   opacity:0;
 
-  filter:drop-shadow(0 0 7px currentColor);
+  filter:
+    drop-shadow(0 0 7px currentColor);
 
-  animation:heartFloat 1.7s ease-out forwards;
+  animation:
+    heartFloat 1.7s ease-out forwards;
 }
 
 @keyframes heartFloat{
 
   0%{
-    transform:translate(0,0) scale(.35);
+    transform:
+      translate(0,0)
+      scale(.35);
+
     opacity:0;
   }
 
@@ -466,16 +621,65 @@ body{
   }
 }
 
+/* HEART TRAIL */
+
+.trail-heart{
+  position:fixed;
+
+  z-index:9;
+
+  pointer-events:none;
+
+  font-size:6px;
+
+  color:#ff6b9e;
+
+  opacity:0;
+
+  filter:
+    drop-shadow(0 0 5px #ff4c91);
+
+  animation:
+    trailFade 1.2s ease-out forwards;
+}
+
+@keyframes trailFade{
+
+  0%{
+    transform:scale(.4);
+
+    opacity:0;
+  }
+
+  20%{
+    opacity:.7;
+  }
+
+  100%{
+    transform:
+      translate(
+        var(--tx),
+        -65px
+      )
+      scale(.8);
+
+    opacity:0;
+  }
+}
+
 /* FOOTER */
 
 .footer{
   margin-top:20px;
 
   font-size:8px;
+
   letter-spacing:3px;
 
   opacity:.25;
 }
+
+/* MOBILE */
 
 @media(max-width:400px){
 
@@ -511,7 +715,7 @@ body{
 
 <div class="card">
 
-  <!-- INJECTION ABOVE THE COUNTDOWN -->
+  <!-- INJECTION -->
 
   <div class="injection-area">
 
@@ -555,7 +759,7 @@ body{
 
   <!-- COUNTDOWN -->
 
-  <div class="countdown">
+  <div class="countdown" id="countdownBox">
 
     <div class="duration" id="duration">
       00 MONTHS • 00 DAYS
@@ -576,11 +780,14 @@ body{
   </div>
 
 
-  <!-- AUTOMATIC LOVE LINES -->
+  <!-- 15 AUTOMATIC LINES -->
 
   <div class="line-box">
 
-    <div class="love-line" id="loveLine"></div>
+    <div
+      class="love-line"
+      id="loveLine">
+    </div>
 
   </div>
 
@@ -595,18 +802,21 @@ body{
 <script>
 
 /* ===============================
-   RELATIONSHIP START
+   START DATE
 ================================ */
 
 const start =
-  new Date("2026-05-30T12:40:00+05:30");
+  new Date(
+    "2026-05-30T12:40:00+05:30"
+  );
+
+
+let lastSecond = -1;
 
 
 /* ===============================
    COUNTDOWN
 ================================ */
-
-let lastSecond = -1;
 
 function updateTimer(){
 
@@ -645,7 +855,9 @@ function updateTimer(){
     if(next <= now){
 
       months++;
-      cursor = next;
+
+      cursor =
+        next;
 
     }else{
 
@@ -665,7 +877,8 @@ function updateTimer(){
       remaining / 86400000
     );
 
-  remaining %= 86400000;
+  remaining %=
+    86400000;
 
 
   const hours =
@@ -673,7 +886,8 @@ function updateTimer(){
       remaining / 3600000
     );
 
-  remaining %= 3600000;
+  remaining %=
+    3600000;
 
 
   const minutes =
@@ -684,13 +898,30 @@ function updateTimer(){
 
   const seconds =
     Math.floor(
-      (remaining % 60000) / 1000
+      (remaining % 60000) /
+      1000
     );
 
 
-  document.getElementById(
-    "duration"
-  ).innerHTML =
+  const duration =
+    document.getElementById(
+      "duration"
+    );
+
+
+  const time =
+    document.getElementById(
+      "time"
+    );
+
+
+  const total =
+    document.getElementById(
+      "totalSeconds"
+    );
+
+
+  duration.innerHTML =
 
     String(months).padStart(2,"0") +
     " MONTHS • " +
@@ -699,9 +930,7 @@ function updateTimer(){
     " DAYS";
 
 
-  document.getElementById(
-    "time"
-  ).innerHTML =
+  time.innerHTML =
 
     String(hours).padStart(2,"0") +
     " HRS • " +
@@ -713,18 +942,22 @@ function updateTimer(){
     " SECS";
 
 
-  document.getElementById(
-    "totalSeconds"
-  ).innerHTML =
+  total.innerHTML =
     totalSeconds.toLocaleString();
 
 
-  /* NEW SECOND = HEART */
+  /* NEW SECOND */
 
   if(seconds !== lastSecond){
 
     lastSecond =
       seconds;
+
+
+    flashNumber(
+      time
+    );
+
 
     createTimerHeart();
 
@@ -734,16 +967,50 @@ function updateTimer(){
 
 
 /* ===============================
-   HEART NEAR SECONDS
+   NUMBER FLASH
+================================ */
+
+function flashNumber(element){
+
+  element.classList.remove(
+    "number-flash"
+  );
+
+
+  void element.offsetWidth;
+
+
+  element.classList.add(
+    "number-flash"
+  );
+
+
+  setTimeout(() => {
+
+    element.classList.remove(
+      "number-flash"
+    );
+
+  },250);
+
+}
+
+
+/* ===============================
+   FLYING HEART
 ================================ */
 
 function createTimerHeart(){
 
   const heart =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   heart.className =
     "timer-heart";
+
 
   heart.innerHTML =
     Math.random() > .5
@@ -752,10 +1019,12 @@ function createTimerHeart(){
 
 
   const colors = [
+
     "#ff3d82",
     "#ff5c9a",
     "#ff1744",
     "#ff8ab7"
+
   ];
 
 
@@ -793,12 +1062,23 @@ function createTimerHeart(){
     ) + "px";
 
 
+  /* LEFT OR RIGHT */
+
+  const direction =
+    Math.random() < .5
+      ? -1
+      : 1;
+
+
+  const distance =
+    25 +
+    Math.random()*65;
+
+
   heart.style.setProperty(
     "--x",
-    (
-      Math.random()*70 -
-      35
-    ) + "px"
+    (direction * distance) +
+    "px"
   );
 
 
@@ -816,10 +1096,87 @@ function createTimerHeart(){
   );
 
 
+  /* HEART TRAIL */
+
+  createTrail(
+    rect,
+    direction
+  );
+
+
   setTimeout(
     () => heart.remove(),
     1800
   );
+
+}
+
+
+/* ===============================
+   HEART TRAIL
+================================ */
+
+function createTrail(
+  rect,
+  direction
+){
+
+  for(
+    let i=0;
+    i<2;
+    i++
+  ){
+
+    const trail =
+      document.createElement(
+        "div"
+      );
+
+
+    trail.className =
+      "trail-heart";
+
+
+    trail.innerHTML =
+      "♥";
+
+
+    trail.style.left =
+      (
+        rect.right -
+        25 +
+        Math.random()*20
+      ) + "px";
+
+
+    trail.style.top =
+      (
+        rect.bottom -
+        5 +
+        i*7
+      ) + "px";
+
+
+    trail.style.setProperty(
+      "--tx",
+      (
+        direction *
+        (10 + Math.random()*35)
+      ) + "px"
+    );
+
+
+    document.body.appendChild(
+      trail
+    );
+
+
+    setTimeout(
+      () => trail.remove(),
+      1300
+    );
+
+  }
 
 }
 
@@ -863,7 +1220,8 @@ const loveLines = [
 ];
 
 
-let lineIndex = 0;
+let lineIndex =
+  0;
 
 
 const loveLine =
@@ -886,7 +1244,9 @@ function showNextLine(){
 
 
     lineIndex =
-      (lineIndex + 1) %
+      (
+        lineIndex + 1
+      ) %
       loveLines.length;
 
 
@@ -909,6 +1269,49 @@ setInterval(
 
 
 /* ===============================
+   BORDER SPARKLE
+================================ */
+
+function createSparkle(){
+
+  const box =
+    document.getElementById(
+      "countdownBox"
+    );
+
+
+  const sparkle =
+    document.createElement(
+      "div"
+    );
+
+
+  sparkle.className =
+    "border-sparkle";
+
+
+  box.appendChild(
+    sparkle
+  );
+
+
+  setTimeout(
+    () => sparkle.remove(),
+    2100
+  );
+
+}
+
+
+/* OCCASIONAL SPARKLE */
+
+setInterval(
+  createSparkle,
+  7500
+);
+
+
+/* ===============================
    BACKGROUND PARTICLES
 ================================ */
 
@@ -918,6 +1321,7 @@ function createParticle(){
     document.createElement(
       "div"
     );
+
 
   particle.className =
     "particle";
@@ -933,8 +1337,10 @@ function createParticle(){
 
 
   particle.style.animationDuration =
-    (8 + Math.random()*7) +
-    "s";
+    (
+      8 +
+      Math.random()*7
+    ) + "s";
 
 
   document.body.appendChild(
