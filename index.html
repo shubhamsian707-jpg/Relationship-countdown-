@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>D ♡ S — OUR LITTLE STORY</title>
 
@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -31,13 +30,13 @@ body{
   color:#fff;
   font-family:"Montserrat",sans-serif;
 
+  /* SAME BACKGROUND */
   background:
     radial-gradient(circle at 50% 45%,rgba(255,40,110,.13),transparent 32%),
     radial-gradient(circle at 15% 15%,rgba(180,20,80,.13),transparent 30%),
     radial-gradient(circle at 85% 85%,rgba(255,30,90,.10),transparent 30%),
     linear-gradient(145deg,#050205,#12050c,#210711,#070307);
 }
-
 
 /* BACKGROUND GLOW */
 
@@ -66,7 +65,6 @@ body{
 }
 
 @keyframes breathe{
-
   0%,100%{
     transform:scale(1);
     opacity:.22;
@@ -76,9 +74,7 @@ body{
     transform:scale(1.18);
     opacity:.34;
   }
-
 }
-
 
 /* BACKGROUND PARTICLES */
 
@@ -94,7 +90,6 @@ body{
 }
 
 @keyframes particleMove{
-
   0%{
     transform:translateY(20px);
     opacity:0;
@@ -112,11 +107,9 @@ body{
     transform:translateY(-100vh);
     opacity:0;
   }
-
 }
 
-
-/* CARD */
+/* MAIN CARD */
 
 .card{
   position:relative;
@@ -140,453 +133,179 @@ body{
     0 0 50px rgba(255,30,100,.05);
 }
 
+/* INJECTION */
 
-/* =====================================================
-   HEART METEOR
-===================================================== */
-
-.meteor-area{
-  position:relative;
+.injection-area{
   height:82px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
   margin-bottom:8px;
-  overflow:visible;
+
+  opacity:0;
+  transform:translateY(5px);
+
+  animation:injectionShow 5s ease-in-out infinite;
 }
 
+.injection{
+  position:relative;
 
-/* FLOATING HEART */
-
-.target-heart{
-  position:absolute;
-
-  width:26px;
-  height:26px;
+  width:76px;
+  height:24px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:22px;
-
-  color:#ff4d91;
-
-  opacity:0;
-
-  pointer-events:none;
-
-  z-index:5;
+  transform:rotate(-7deg);
 
   filter:
-    drop-shadow(0 0 6px #ff4d91)
-    drop-shadow(0 0 15px rgba(255,40,120,.9))
-    drop-shadow(0 0 30px rgba(255,40,120,.5));
-
-  transition:
-    left 4s ease-in-out,
-    top 4s ease-in-out,
-    opacity .7s ease;
+    drop-shadow(0 0 5px rgba(255,60,130,.7))
+    drop-shadow(0 0 12px rgba(255,40,120,.35));
 }
 
+/* SYRINGE */
 
-/* HEART GLOW */
+.syringe-body{
+  position:relative;
 
-.target-heart::before{
-  content:"";
+  width:42px;
+  height:14px;
 
+  border:1px solid rgba(255,170,200,.85);
+  border-radius:4px;
+
+  background:rgba(255,70,140,.12);
+
+  overflow:hidden;
+}
+
+/* LOVE INSIDE */
+
+.love-liquid{
   position:absolute;
 
-  width:36px;
-  height:36px;
+  left:0;
+  top:0;
 
-  border-radius:50%;
+  width:100%;
+  height:100%;
 
-  background:rgba(255,45,125,.08);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,40,110,.75),
+      rgba(255,120,180,.95)
+    );
 
   box-shadow:
-    0 0 15px rgba(255,45,125,.55),
-    0 0 35px rgba(255,45,125,.25);
-
-  animation:heartAura 1.5s ease-in-out infinite;
+    0 0 8px rgba(255,40,120,.8);
 }
 
-@keyframes heartAura{
-
-  0%,100%{
-    transform:scale(.75);
-    opacity:.35;
-  }
-
-  50%{
-    transform:scale(1.35);
-    opacity:.8;
-  }
-
-}
-
-
-/* METEOR */
-
-.collision-meteor{
-  position:absolute;
-
-  width:25px;
-  height:25px;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  font-size:21px;
-
-  color:#ff79ad;
-
-  opacity:0;
-
-  pointer-events:none;
-
-  z-index:8;
-
-  filter:
-    drop-shadow(0 0 6px #ff2d7c)
-    drop-shadow(0 0 15px #ff2d7c)
-    drop-shadow(0 0 30px rgba(255,30,110,.8));
-}
-
-
-/* LONG TRAIL */
-
-.collision-meteor::before{
-
-  content:"";
+.love-liquid::after{
+  content:"♥  ♥  ♥";
 
   position:absolute;
 
-  width:120px;
-  height:5px;
+  left:4px;
+  top:0;
 
-  right:12px;
-  top:10px;
+  font-size:7px;
+  line-height:13px;
 
-  border-radius:50%;
+  color:#fff;
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,70,145,.12),
-      rgba(255,90,160,.55),
-      rgba(255,220,235,1)
-    );
+  opacity:.9;
 
-  filter:blur(2px);
+  animation:liquidMove 2s linear infinite;
 }
 
+@keyframes liquidMove{
+  from{
+    transform:translateX(0);
+  }
 
-/* BRIGHT TRAIL */
+  to{
+    transform:translateX(-8px);
+  }
+}
 
-.collision-meteor::after{
+.needle{
+  width:17px;
+  height:1px;
 
-  content:"";
+  background:#ffc2d8;
 
+  box-shadow:
+    0 0 5px #ff5b94;
+}
+
+.plunger{
+  width:8px;
+  height:19px;
+
+  border:1px solid #ff9dbc;
+  border-radius:2px;
+
+  margin-right:2px;
+
+  box-shadow:
+    0 0 6px rgba(255,70,140,.5);
+}
+
+.handle{
   position:absolute;
+  right:1px;
 
-  width:75px;
-  height:2px;
-
-  right:15px;
-  top:17px;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,220,235,.9)
-    );
-
-  filter:blur(1px);
-}
-
-
-/* LEFT METEOR */
-
-.fly-left{
-  animation:
-    meteorLeft 1.1s cubic-bezier(.15,.7,.25,1) forwards;
-}
-
-@keyframes meteorLeft{
-
-  0%{
-    left:-70px;
-    top:62px;
-    opacity:0;
-    transform:rotate(-22deg) scale(.45);
-  }
-
-  10%{
-    opacity:1;
-  }
-
-  100%{
-    left:var(--hitX);
-    top:var(--hitY);
-    opacity:1;
-    transform:rotate(-22deg) scale(1.12);
-  }
-
-}
-
-
-/* RIGHT METEOR */
-
-.fly-right{
-  animation:
-    meteorRight 1.1s cubic-bezier(.15,.7,.25,1) forwards;
-}
-
-@keyframes meteorRight{
-
-  0%{
-    left:calc(100% + 70px);
-    top:8px;
-    opacity:0;
-    transform:rotate(22deg) scale(.45);
-  }
-
-  10%{
-    opacity:1;
-  }
-
-  100%{
-    left:var(--hitX);
-    top:var(--hitY);
-    opacity:1;
-    transform:rotate(22deg) scale(1.12);
-  }
-
-}
-
-
-/* IMPACT FLASH */
-
-.impact-flash{
-
-  position:absolute;
-
-  width:18px;
+  width:6px;
   height:18px;
 
-  border-radius:50%;
-
-  background:#fff;
-
-  transform:translate(-50%,-50%) scale(.2);
-
-  opacity:0;
-
-  z-index:10;
-
-  pointer-events:none;
-
-  box-shadow:
-    0 0 8px #fff,
-    0 0 20px #ff6ba8,
-    0 0 45px #ff2478,
-    0 0 80px rgba(255,30,110,.8);
-
-  animation:
-    impactFlash .65s ease-out forwards;
+  border:1px solid #ff9dbc;
+  border-radius:2px;
 }
 
-@keyframes impactFlash{
-
-  0%{
-    transform:translate(-50%,-50%) scale(.2);
-    opacity:0;
-  }
-
-  15%{
-    transform:translate(-50%,-50%) scale(1.8);
-    opacity:1;
-  }
-
-  45%{
-    transform:translate(-50%,-50%) scale(2.8);
-    opacity:.7;
-  }
-
-  100%{
-    transform:translate(-50%,-50%) scale(4.5);
-    opacity:0;
-  }
-
-}
-
-
-/* SHOCKWAVE */
-
-.shockwave{
-
-  position:absolute;
-
-  width:20px;
-  height:20px;
-
-  border-radius:50%;
-
-  border:1px solid rgba(255,180,215,.95);
-
-  transform:translate(-50%,-50%) scale(.2);
-
-  opacity:0;
-
-  z-index:9;
-
-  pointer-events:none;
-
-  box-shadow:
-    0 0 10px rgba(255,70,145,.9),
-    inset 0 0 10px rgba(255,70,145,.25);
-
-  animation:
-    shockwave .9s ease-out forwards;
-}
-
-@keyframes shockwave{
-
-  0%{
-    transform:translate(-50%,-50%) scale(.2);
-    opacity:0;
-  }
-
-  15%{
-    opacity:1;
-  }
-
-  100%{
-    transform:translate(-50%,-50%) scale(6);
-    opacity:0;
-  }
-
-}
-
-
-/* PARTICLES */
-
-.destroy-particle{
-
-  position:absolute;
-
-  width:4px;
-  height:4px;
-
-  border-radius:50%;
-
-  background:#ff8fba;
-
-  box-shadow:
-    0 0 6px #ff4d91,
-    0 0 14px #ff2f80,
-    0 0 25px rgba(255,60,140,.8);
-
-  pointer-events:none;
-
-  z-index:7;
-
-  opacity:0;
-
-  animation:
-    particleBurst 2.6s cubic-bezier(.15,.65,.2,1) forwards;
-}
-
-@keyframes particleBurst{
-
-  0%{
-    transform:translate(0,0) scale(.2);
-    opacity:0;
-  }
-
-  8%{
-    transform:translate(0,0) scale(1.5);
-    opacity:1;
-  }
-
-  35%{
-    opacity:.95;
-  }
-
-  70%{
-    opacity:.45;
-  }
-
-  100%{
-    transform:
-      translate(var(--px),var(--py))
-      scale(.05);
-    opacity:0;
-  }
-
-}
-
-
-/* SMALL HEART SHARDS */
-
-.mini-heart{
-
-  position:absolute;
-
-  color:#ff76ab;
+.injection-text{
+  margin-top:7px;
 
   font-size:8px;
+  font-weight:600;
 
-  z-index:7;
+  letter-spacing:2px;
 
-  pointer-events:none;
+  color:#ffb5cc;
 
-  opacity:0;
-
-  filter:
-    drop-shadow(0 0 5px #ff3e87)
-    drop-shadow(0 0 10px rgba(255,60,140,.8));
-
-  animation:
-    miniHeartBurst 2.4s ease-out forwards;
+  text-shadow:
+    0 0 8px rgba(255,60,130,.7);
 }
 
-@keyframes miniHeartBurst{
+/* FASTER FADE */
 
-  0%{
-    transform:
-      translate(0,0)
-      scale(.3)
-      rotate(0deg);
+@keyframes injectionShow{
+
+  0%,8%{
     opacity:0;
+    transform:translateY(5px);
   }
 
-  12%{
+  18%,50%{
     opacity:1;
-    transform:
-      translate(0,0)
-      scale(1);
+    transform:translateY(0);
   }
 
-  100%{
-    transform:
-      translate(var(--hx),var(--hy))
-      scale(.25)
-      rotate(var(--hr));
+  62%,100%{
     opacity:0;
+    transform:translateY(-5px);
   }
-
 }
-
 
 /* INITIALS */
 
 .initials{
   font-size:14px;
-
   font-weight:600;
 
   letter-spacing:4px;
@@ -620,9 +339,7 @@ body{
     text-shadow:
       0 0 14px rgba(255,70,130,.8);
   }
-
 }
-
 
 /* TITLE */
 
@@ -630,7 +347,6 @@ body{
   margin:0;
 
   font-size:28px;
-
   font-weight:600;
 
   letter-spacing:6px;
@@ -645,7 +361,6 @@ body{
 
   opacity:.48;
 }
-
 
 /* COUNTDOWN */
 
@@ -690,11 +405,9 @@ body{
       0 0 30px rgba(255,30,100,.20),
       inset 0 0 30px rgba(255,30,100,.04);
   }
-
 }
 
-
-/* NUMBERS */
+/* COUNTDOWN NUMBERS */
 
 .duration,
 .time,
@@ -752,7 +465,6 @@ body{
 }
 
 .number-flash{
-
   transform:scale(1.035);
 
   text-shadow:
@@ -760,11 +472,9 @@ body{
     0 0 24px rgba(255,30,110,.35);
 }
 
-
 /* BORDER SPARKLE */
 
 .border-sparkle{
-
   position:absolute;
 
   width:4px;
@@ -825,9 +535,7 @@ body{
     top:50%;
     opacity:0;
   }
-
 }
-
 
 /* LOVE LINES */
 
@@ -869,8 +577,7 @@ body{
   transform:translateY(0);
 }
 
-
-/* FLYING HEARTS */
+/* FLYING HEART */
 
 .timer-heart{
   position:fixed;
@@ -912,9 +619,7 @@ body{
 
     opacity:0;
   }
-
 }
-
 
 /* HEART TRAIL */
 
@@ -942,6 +647,7 @@ body{
 
   0%{
     transform:scale(.4);
+
     opacity:0;
   }
 
@@ -951,14 +657,15 @@ body{
 
   100%{
     transform:
-      translate(var(--tx),-65px)
+      translate(
+        var(--tx),
+        -65px
+      )
       scale(.8);
 
     opacity:0;
   }
-
 }
-
 
 /* FOOTER */
 
@@ -971,7 +678,6 @@ body{
 
   opacity:.25;
 }
-
 
 /* MOBILE */
 
@@ -998,36 +704,46 @@ body{
   .love-line{
     font-size:11px;
   }
-
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="glow one"></div>
 <div class="glow two"></div>
 
-
 <div class="card">
 
+  <!-- INJECTION -->
 
-  <div
-    class="meteor-area"
-    id="meteorArea">
+  <div class="injection-area">
+
+    <div class="injection">
+
+      <div class="plunger"></div>
+
+      <div class="syringe-body">
+        <div class="love-liquid"></div>
+      </div>
+
+      <div class="needle"></div>
+
+      <div class="handle"></div>
+
+    </div>
+
+    <div class="injection-text">
+      NO INJECTIONS ALLOWED HERE. ❤️
+    </div>
+
   </div>
 
 
   <div class="initials">
-
     D <span>♡</span> S
-
     •
-
     SINCE 30 MAY 2026
-
   </div>
 
 
@@ -1041,45 +757,30 @@ body{
   </div>
 
 
-  <div
-    class="countdown"
-    id="countdownBox">
+  <!-- COUNTDOWN -->
 
-    <div
-      class="duration"
-      id="duration">
+  <div class="countdown" id="countdownBox">
 
+    <div class="duration" id="duration">
       00 MONTHS • 00 DAYS
-
     </div>
 
-
-    <div
-      class="time"
-      id="time">
-
+    <div class="time" id="time">
       00 HRS • 00 MINS • 00 SECS
-
     </div>
-
 
     <div class="total">
-
       TOTAL SECONDS
-
     </div>
 
-
-    <div
-      class="total-number"
-      id="totalSeconds">
-
+    <div class="total-number" id="totalSeconds">
       0
-
     </div>
 
   </div>
 
+
+  <!-- 15 AUTOMATIC LINES -->
 
   <div class="line-box">
 
@@ -1092,9 +793,7 @@ body{
 
 
   <div class="footer">
-
     EVERY SECOND BECOMES A MEMORY.
-
   </div>
 
 </div>
@@ -1102,9 +801,8 @@ body{
 
 <script>
 
-
 /* ===============================
-   RELATIONSHIP START
+   START DATE
 ================================ */
 
 const start =
@@ -1125,10 +823,8 @@ function updateTimer(){
   const now =
     new Date();
 
-
   const difference =
     now - start;
-
 
   if(difference < 0)
     return;
@@ -1143,7 +839,6 @@ function updateTimer(){
   let cursor =
     new Date(start);
 
-
   let months = 0;
 
 
@@ -1151,7 +846,6 @@ function updateTimer(){
 
     const next =
       new Date(cursor);
-
 
     next.setMonth(
       next.getMonth() + 1
@@ -1183,7 +877,6 @@ function updateTimer(){
       remaining / 86400000
     );
 
-
   remaining %=
     86400000;
 
@@ -1192,7 +885,6 @@ function updateTimer(){
     Math.floor(
       remaining / 3600000
     );
-
 
   remaining %=
     3600000;
@@ -1232,26 +924,21 @@ function updateTimer(){
   duration.innerHTML =
 
     String(months).padStart(2,"0") +
-
     " MONTHS • " +
 
     String(days).padStart(2,"0") +
-
     " DAYS";
 
 
   time.innerHTML =
 
     String(hours).padStart(2,"0") +
-
     " HRS • " +
 
     String(minutes).padStart(2,"0") +
-
     " MINS • " +
 
     String(seconds).padStart(2,"0") +
-
     " SECS";
 
 
@@ -1259,13 +946,17 @@ function updateTimer(){
     totalSeconds.toLocaleString();
 
 
+  /* NEW SECOND */
+
   if(seconds !== lastSecond){
 
     lastSecond =
       seconds;
 
 
-    flashNumber(time);
+    flashNumber(
+      time
+    );
 
 
     createTimerHeart();
@@ -1306,7 +997,7 @@ function flashNumber(element){
 
 
 /* ===============================
-   FLYING HEARTS
+   FLYING HEART
 ================================ */
 
 function createTimerHeart(){
@@ -1371,6 +1062,8 @@ function createTimerHeart(){
     ) + "px";
 
 
+  /* LEFT OR RIGHT */
+
   const direction =
     Math.random() < .5
       ? -1
@@ -1384,10 +1077,8 @@ function createTimerHeart(){
 
   heart.style.setProperty(
     "--x",
-    (
-      direction *
-      distance
-    ) + "px"
+    (direction * distance) +
+    "px"
   );
 
 
@@ -1404,6 +1095,8 @@ function createTimerHeart(){
     heart
   );
 
+
+  /* HEART TRAIL */
 
   createTrail(
     rect,
@@ -1488,255 +1181,198 @@ function createTrail(
 }
 
 
-/* =================================================
-   CINEMATIC HEART → METEOR → EXPLOSION
-================================================= */
+/* ===============================
+   15 LOVE LINES
+================================ */
 
-const meteorArea =
+const loveLines = [
+
+  "EVERY SECOND WITH YOU MATTERS. ❤️",
+
+  "STILL MY FAVORITE PERSON. ❤️",
+
+  "ANOTHER SECOND. ANOTHER MEMORY OF US.",
+
+  "YOU MAKE TIME FEEL BEAUTIFUL. ❤️",
+
+  "ONE MORE LITTLE MEMORY OF US. 💗",
+
+  "EVERY DAY WITH YOU FEELS SPECIAL.",
+
+  "STILL CHOOSING US. ❤️",
+
+  "YOU MAKE ORDINARY MOMENTS SPECIAL.",
+
+  "ANOTHER SECOND. ANOTHER REASON TO SMILE. 💕",
+
+  "SOMEHOW, I LOVE YOU A LITTLE MORE TODAY.",
+
+  "OUR LITTLE FOREVER KEEPS GROWING. ❤️",
+
+  "YOU ARE MY FAVORITE PART OF EVERY DAY.",
+
+  "TIME PASSES. OUR MEMORIES STAY.",
+
+  "JUST YOU AND ME, ONE SECOND AT A TIME. ❤️",
+
+  "HERE'S TO EVERY SECOND STILL TO COME. 💗"
+
+];
+
+
+let lineIndex =
+  0;
+
+
+const loveLine =
   document.getElementById(
-    "meteorArea"
+    "loveLine"
   );
 
 
-function startHeartScene(){
+function showNextLine(){
 
-  const heart =
-    document.createElement(
-      "div"
-    );
-
-
-  heart.className =
-    "target-heart";
-
-
-  heart.innerHTML =
-    "♥";
-
-
-  meteorArea.appendChild(
-    heart
+  loveLine.classList.remove(
+    "show"
   );
 
 
-  /* HEART START */
-
-  const startSide =
-    Math.random() < .5
-      ? 10
-      : 78;
-
-
-  const startTop =
-    15 +
-    Math.random()*18;
-
-
-  heart.style.left =
-    startSide + "%";
-
-
-  heart.style.top =
-    startTop + "px";
-
-
   setTimeout(() => {
 
-    heart.style.opacity =
-      ".95";
-
-  },300);
+    loveLine.innerHTML =
+      loveLines[lineIndex];
 
 
-  /* HEART MOVES SLOWLY */
-
-  const finalLeft =
-    32 +
-    Math.random()*36;
-
-
-  const finalTop =
-    22 +
-    Math.random()*25;
+    lineIndex =
+      (
+        lineIndex + 1
+      ) %
+      loveLines.length;
 
 
-  setTimeout(() => {
-
-    heart.style.left =
-      finalLeft + "%";
-
-
-    heart.style.top =
-      finalTop + "px";
-
-  },700);
-
-
-  /* METEOR */
-
-  setTimeout(() => {
-
-    launchMeteor(
-      heart
+    loveLine.classList.add(
+      "show"
     );
 
-  },4700);
+  },1500);
 
 }
 
 
+showNextLine();
+
+
+setInterval(
+  showNextLine,
+  6000
+);
+
+
 /* ===============================
-   METEOR LAUNCH
+   BORDER SPARKLE
 ================================ */
 
-function launchMeteor(
-  heart
-){
+function createSparkle(){
 
-  if(!heart.isConnected)
-    return;
-
-
-  const hitX =
-    heart.offsetLeft;
+  const box =
+    document.getElementById(
+      "countdownBox"
+    );
 
 
-  const hitY =
-    heart.offsetTop;
-
-
-  const meteor =
+  const sparkle =
     document.createElement(
       "div"
     );
 
 
-  meteor.className =
-    "collision-meteor";
+  sparkle.className =
+    "border-sparkle";
 
 
-  meteor.innerHTML =
-    "♥";
-
-
-  meteor.style.setProperty(
-    "--hitX",
-    hitX + "px"
+  box.appendChild(
+    sparkle
   );
 
 
-  meteor.style.setProperty(
-    "--hitY",
-    hitY + "px"
+  setTimeout(
+    () => sparkle.remove(),
+    2100
   );
-
-
-  const fromLeft =
-    Math.random() < .5;
-
-
-  meteor.classList.add(
-    fromLeft
-      ? "fly-left"
-      : "fly-right"
-  );
-
-
-  meteorArea.appendChild(
-    meteor
-  );
-
-
-  setTimeout(() => {
-
-    createImpact(
-      hitX + 12,
-      hitY + 12
-    );
-
-
-    heart.remove();
-
-
-    meteor.remove();
-
-  },1100);
 
 }
 
 
+/* OCCASIONAL SPARKLE */
+
+setInterval(
+  createSparkle,
+  7500
+);
+
+
 /* ===============================
-   IMPACT
+   BACKGROUND PARTICLES
 ================================ */
 
-function createImpact(
-  x,
-  y
-){
+function createParticle(){
 
-  /* FLASH */
-
-  const flash =
+  const particle =
     document.createElement(
       "div"
     );
 
 
-  flash.className =
-    "impact-flash";
+  particle.className =
+    "particle";
 
 
-  flash.style.left =
-    x + "px";
+  particle.style.left =
+    Math.random()*100 +
+    "vw";
 
 
-  flash.style.top =
-    y + "px";
+  particle.style.bottom =
+    "-10px";
 
 
-  meteorArea.appendChild(
-    flash
-  );
+  particle.style.animationDuration =
+    (
+      8 +
+      Math.random()*7
+    ) + "s";
 
 
-  /* SHOCKWAVE */
-
-  const wave =
-    document.createElement(
-      "div"
-    );
-
-
-  wave.className =
-    "shockwave";
-
-
-  wave.style.left =
-    x + "px";
-
-
-  wave.style.top =
-    y + "px";
-
-
-  meteorArea.appendChild(
-    wave
+  document.body.appendChild(
+    particle
   );
 
 
   setTimeout(
-    () => flash.remove(),
-    700
+    () => particle.remove(),
+    15000
   );
 
-
-  setTimeout(
-    () => wave.remove(),
-    1000
-  );
+}
 
 
-  /* PARTICLES */
+setInterval(
+  createParticle,
+  900
+);
 
-  for(
-    let 
+
+/* START */
+
+updateTimer();
+
+
+setInterval(
+  updateTimer,
+  250
+);
+
+</script>
+
+</body>
+</html>
